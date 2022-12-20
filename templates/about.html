@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <title>About-genCounter</title>
+    <style>
+        body {
+            padding: 25px;
+            background-color: #000000;
+            color: whitesmoke;
+            font-size: 25px;
+        }
+
+        a:link {
+            color: #03DAC6;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #026d63;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color:#03DAC6;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a.button1 {
+            display:inline-block;
+            padding:0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        a.button1:hover {
+            color: #000000;
+            background-color: #03DAC6;
+        }
+
+        @media all and (max-width:30em) {
+            a.button1{
+                display:block;
+                margin:04em auto;
+            }
+        }       
+    </style>
+    <body>
+        <h1>How it works</h1>
+        <p>What is genCounter?</p>
+        <ul>
+            <li>A webapp to help researchers use the gendered language dictionary developed by <a href = "https://journals.sagepub.com/doi/full/10.1177/1065912919874883" target="_blank">Roberts and Utych (2019)</a>.</li>
+        </ul>
+        <p>How does genCounter work?</p>
+        <ul>
+            <li>Upload a .txt file and genCounter will match the words in your file to the gendered language dictionary. It will then give the document a score based on the "genderedness" of the text in the document.</li>
+        </ul>
+        <p>How was the gendered language dictionary developed?</p>
+        <ul>
+            <li>Used Amazon's MTURK platform to crowdsource words that people perceived as masculine, feminine, or neutral that are common in politics.</li>
+            <li>Participants gave these scores to each word on a 1-7 scale (closer to 1 is feminine and closer to 7 is masculine).
+            </li>
+            <li>As this was developed to examine political texts, this may not be appropriate to determine the "genderedness" of texts outside of the political domain.</li>
+        </ul>
+        <a href = {% url 'upload_file' %} class="button1">Use genCounter</a>
+    </body>
+</html>
