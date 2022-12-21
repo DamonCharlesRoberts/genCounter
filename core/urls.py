@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import HomePageView, AboutPageView, CreateDocView
+from .views import HomePageView, AboutPageView, CreateDocView, DictPageView
 
 #urlpatterns = [
 #    path('', views.home, name='home'),
@@ -10,5 +10,6 @@ from .views import HomePageView, AboutPageView, CreateDocView
 urlpatterns = [
     path("", HomePageView, name = "home"),
     path("about/", AboutPageView, name = "about"),
-    path("upload/", CreateDocView.as_view(), name="upload_file")
+    path("upload/", CreateDocView.as_view(), name="upload_file"),
+    path("dictionary-preview/", DictPageView, name = 'dictionary')
 ]
