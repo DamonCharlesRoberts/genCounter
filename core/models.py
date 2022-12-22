@@ -52,7 +52,8 @@ class Document(models.Model):
                     matches.append(d)
         if len(matches)>=1:
                 #score+=dict[dict["Word"].isin(matches).iloc[0]["Score"]]
-                score+=1
+                #score+=1
+                score+=dict[dict["Word"].isin(matches)].iloc[0]["Score"]
         else:
             score
-        return score
+        return score/self.WordCount()
