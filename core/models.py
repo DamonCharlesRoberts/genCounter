@@ -1,5 +1,6 @@
 from django.db import models
 import pandas as pd
+import os
 # Create your models here.
 class Dictionary(models.Model):
     Word = models.CharField(max_length=100)
@@ -13,7 +14,12 @@ class Dictionary(models.Model):
 
 class Document(models.Model):
     file=models.FileField(upload_to='documents/')
+<<<<<<< HEAD
     fileName=models.CharField(max_length=50)
+=======
+    def FileName(self):
+        return os.path.basename(self.file.name)
+>>>>>>> e3ac996 (word count analyzer)
 #
 #    def __str__(self):
 #        return self.fileName()
@@ -28,6 +34,7 @@ class Document(models.Model):
 #                string=string.replace(ele, "")
 #        return string
 #
+<<<<<<< HEAD
 #    def WordCount(self):
 #        p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
 #        with open(self.files.path) as file:
@@ -37,6 +44,17 @@ class Document(models.Model):
 #            if ele in p:
 #                string=string.replace(ele, "")
 #        return len(string)
+=======
+    def WordCount(self):
+        p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        with open(self.file.path) as file:
+            for line in file:
+                str=line.split()
+        for ele in str:
+            if ele in p:
+                str=str.replace(ele, "")
+        return len(str)
+>>>>>>> e3ac996 (word count analyzer)
 #    
 #    def Score(self):
 #        p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''

@@ -13,7 +13,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv("/home/damoncroberts/gencounter/.env")
 df = pd.read_csv("/home/damoncroberts/dict.csv")
+<<<<<<< HEAD
 dfClean=df[["Word", "mean-a"]]
+=======
+dfClean=df[["Word", "mean-a"]].rename(columns={"mean-a":"Score"})
+>>>>>>> e3ac996 (word count analyzer)
 dfClean["Word"] = dfClean["Word"].astype('string')
 dfClean["id"] = range(1, len(dfClean) + 1)
 
