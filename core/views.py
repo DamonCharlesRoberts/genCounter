@@ -15,8 +15,6 @@ def AboutPageView(request):
 def DictPageView(request):
     Dict = Dictionary.objects.all()
     return render(request=request, template_name="show.html", context ={'word':Dict})
-<<<<<<< HEAD
-=======
 
 def ResultPageView(request):
     instance = Document.objects.latest("file")
@@ -24,13 +22,8 @@ def ResultPageView(request):
     name = instance.FileName()
     return render(request=request, template_name="result.html", context={'name':name, 'count':count})
 
->>>>>>> e3ac996 (word count analyzer)
 class CreateDocView(CreateView):
     model = Document
     form_class = DocumentForm
     template_name = "form.html"
-<<<<<<< HEAD
-    success_url = reverse_lazy("home")
-=======
     success_url = reverse_lazy("result")
->>>>>>> e3ac996 (word count analyzer)
