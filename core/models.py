@@ -14,22 +14,20 @@ class Dictionary(models.Model):
 
 class Document(models.Model):
     file=models.FileField(upload_to='documents/')
+    #dict = Dictionary.get.objects.all()
     def FileName(self):
         return os.path.basename(self.file.name)
 #
 #    def __str__(self):
 #        return self.fileName()
 #    
-#    def Clean(self):
-#        p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
-#        with open(self.files.path) as file:
-#            for line in file:
-#                str=line.split()
-#        for ele in string:
-#            if ele in p:
-#                string=string.replace(ele, "")
-#        return string
-#
+    def Clean(self, string):
+        punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        for ele in string:
+            if ele in punc:
+                string = string.replace(ele, "")
+        return string
+
     def WordCount(self):
         p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
         with open(self.file.path) as file:
@@ -39,25 +37,22 @@ class Document(models.Model):
             if ele in p:
                 str=str.replace(ele, "")
         return len(str)
-#    
-#    def Score(self):
-#        p = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
-#        with open(self.files.path) as file:
-#            for line in file:
-#                String=line.split()
-#        for ele in String:
-#            if ele in p:
-#                String=String.replace(ele, "")
-#        Words = ["Hi"]
-#        matches=list()
-#        score=0
-#        for d in Words:
-#            for e in String:
-#                if d==e:
-#                    matches.append(d)
-#        for i in matches:
-#            if len(dict[dict["Word"].isin(matches)].index)==1:
-#                score+=dict[dict["Word"].isin(matches).iloc[0]["Score"]]
-#            else:
-#                score
-#        return score
+    
+    def Score(self, dict):
+        with open(self.file.path) as file:
+            for line in file:
+                String=line.lower().split()
+            cleaned = [self.Clean(i) for i in String]
+        Words = list(dict["Word"])
+        matches=list()
+        score=0
+        for d in Words:
+            for e in cleaned:
+                if d==e:
+                    matches.append(d)
+        if len(matches)>=1:
+                #score+=dict[dict["Word"].isin(matches).iloc[0]["Score"]]
+                score+=1
+        else:
+            score
+        return score

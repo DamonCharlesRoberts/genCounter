@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-
+from django_pandas.io import read_frame
 from .models import Document, Dictionary
 from .forms import DocumentForm
 
@@ -18,9 +18,11 @@ def DictPageView(request):
 
 def ResultPageView(request):
     instance = Document.objects.latest("file")
+    dict = read_frame(Dictionary.objects.all())
     count = instance.WordCount()
     name = instance.FileName()
-    return render(request=request, template_name="result.html", context={'name':name, 'count':count})
+    score = instance.Score(dict)
+    return render(request=request, template_name="result.html", context={'name':name, 'count':count, 'score':score})
 
 class CreateDocView(CreateView):
     model = Document
