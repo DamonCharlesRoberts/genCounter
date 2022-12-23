@@ -1,6 +1,6 @@
 <h4 align="center">genCounter: A webapp to use the Gendered Language Dictionary</h4>
 <p align="center">
-    <a href="https://github.com/DamonCharlesRoberts/genCounter/commits/main">
+    <a href="https://github.com/DamonCharlesRoberts/genCounter/commits/master">
     <img src="https://img.shields.io/github/last-commit/DamonCharlesRoberts/genCounter.svg?style=flat-square&logo=github&logoColor=white"
          alt="GitHub last commit"></a>
     <a href="https://github.com/DamonCharlesRoberts/genCounter/issues">
