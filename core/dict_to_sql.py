@@ -29,3 +29,4 @@ engine = create_engine( # create the engine to connect to the database
         ) # access the mysql database for this webapp
 engine.connect() # connect to the database with the engine
 dfClean.to_sql(con=engine, name="dictionary", if_exists="replace") # store the dictionary into the database
+dfClean.to_sql(con=engine, name="dictionary", if_exists="replace") # store the dictionary into the database
