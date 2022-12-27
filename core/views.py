@@ -6,12 +6,8 @@
         - Updated by: dcr
 """
 
-from django.shortcuts import render #to render the models and forms
-from django.views.generic import CreateView #to render dictionary
-from django.urls import reverse_lazy #once file is uploaded, send it to a new url while analysis is executed
-from django_pandas.io import read_frame #read_frame for the loaded dictionary table
-from .models import Document, Dictionary #to access the Document and Dictionary models
-from .forms import DocumentForm #to access the DocumentForm
+from .models import Document
+from .forms import DocumentForm
 
 def HomePageView(request):
     """
@@ -63,17 +59,18 @@ def ResultPageView(request):
     score = instance.Score(dict) # pass the dictionary to the Score function and calculate the score for the file
     return render(request=request, template_name="result.html", context={'name':name, 'count':count, 'score':score}) # render the result of the WordCount, FileName, and Score and store them as name, count, and score for template 
 
+def DictPageView(request):
+    Dict = Dictionary.objects.all()
+    return render(request=request, template_name="show.html", context ={'word':Dict})
+
+def ResultPageView(request):
+    instance = Document.objects.latest("file")
+    count = instance.WordCount()
+    name = instance.FileName()
+    return render(request=request, template_name="result.html", context={'name':name, 'count':count})
+
 class CreateDocView(CreateView):
-    """
-        Name: CreateDocView
-        Description: Create a form for people to upload the file to
-        Dependencies:
-            - django.view.generic.CreateView
-            - core.models.Document
-            - core.forms.DocumentForm
-            - templates/form.html0
-    """
-    model = Document # take the Document Object
-    form_class = DocumentForm # and put it in a form
-    template_name = "form.html" # put the form in templates/form.html
-    success_url = reverse_lazy("result") # and if the file is successfully uploaded, send it to the result page
+    model = Document
+    form_class = DocumentForm
+    template_name = "form.html"
+    success_url = reverse_lazy("home")
