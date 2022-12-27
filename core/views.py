@@ -74,6 +74,10 @@ def ResultPageView(request):
     return render(request=request, template_name="result.html", context={'name':name, 'count':count})
 
 class CreateDocView(CreateView):
+    model = Document
+    form_class = DocumentForm
+    template_name = "form.html"
+    success_url = reverse_lazy("result")
     """
         Name: CreateDocView
         Description: Create a form for people to upload the file to
