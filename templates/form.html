@@ -1,6 +1,16 @@
 <!DOCTYPE html>
+<!--
+    Title: form
+    Notes:
+      - Description: create a template to display the upload form.
+      - Updated: 2022-12-23
+      - Updated by: dcr
+-->
 <html>
   <title>Upload-genCounter</title>
+  <!--
+    Define colors and style for the body, the buttons, and hyperlinks
+  -->
   <style>
     body {
         padding: 25px;
@@ -47,6 +57,10 @@
       }
   </style>
   <h1>Upload file to be analyzed</h1>
+  <p>Note: This must be a .txt file. Anyother file type will cause an error.</p>
+  <!--
+    Take the form defined in core.forms, core.models, and passed to views and put the underlying operation on the page.
+  -->
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
