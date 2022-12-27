@@ -20,4 +20,4 @@ engine = create_engine( # create the engine to connect to the database
         f'mysql+mysqlconnector://{USER}:{PASSWORD}@{USER}.mysql.pythonanywhere-services.com/{USER}$genCounter'
         ) # access the mysql database for this webapp
 engine.connect() # connect to the database with the engine
-engine.execute("TRUNCATE TABLE core_document;", con = engine) # delete the contents of the table but but recreate the columns.
+engine.execute("TRUNCATE TABLE core_document;") # delete the contents of the table but but recreate the columns.
