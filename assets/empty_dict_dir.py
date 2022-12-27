@@ -9,6 +9,6 @@
 from os import remove # for removing files
 from glob import glob # for path management
 
-files = glob.glob("/home/damoncroberts/gencounter/media/documents/")
+files = glob("/home/damoncroberts/gencounter/media/documents/*")
 for file in files:
     remove(file)
