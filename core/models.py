@@ -78,13 +78,10 @@ class Document(models.Model):
             for line in file: # separate each line
                 String=line.lower().split() # and for each line, convert characters to lower case and split them into words
             cleaned = [self.Clean(i) for i in String] # then using models.Clean, remove the punctuation
-        Words = list(dict["Word"]) # grab the column of words from the passed dict object and turn a list of them
-        matches=list() # intitialize an empty list object
-        score=0 # start each analysis with a score of zerio
-        for d in Words:
-            for e in cleaned:
-                if d==e:
-                    matches.append(d) # if the words in the dictionary and the document match, put them in the matches list object
+        Words = set(dict["Word"]) # grab the column of words from the passed dict object and turn a list of them
+        score=0 # start each analysis with a score of zero
+        cleaned = set(cleaned)
+        matches = Words.intersection(cleaned)
         if len(matches)>=1: # if there are 1 or more words listed in the matches column
                 score+=dict[dict["Word"].isin(matches)].iloc[0]["Score"] #... then take the score for that corresponding word in the dictionary and add it to the score
         else:
