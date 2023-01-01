@@ -6,8 +6,12 @@
         - Updated by: dcr
 """
 
-from .models import Document
-from .forms import DocumentForm
+from django.shortcuts import render #to render the models and forms
+from django.views.generic import CreateView #to render dictionary
+from django.urls import reverse_lazy #once file is uploaded, send it to a new url while analysis is executed
+from django_pandas.io import read_frame #read_frame for the loaded dictionary table
+from .models import Document, Dictionary #to access the Document and Dictionary models
+from .forms import DocumentForm #to access the DocumentForm
 
 def HomePageView(request):
     """
@@ -73,4 +77,17 @@ class CreateDocView(CreateView):
     model = Document
     form_class = DocumentForm
     template_name = "form.html"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("result")
+    """
+        Name: CreateDocView
+        Description: Create a form for people to upload the file to
+        Dependencies:
+            - django.view.generic.CreateView
+            - core.models.Document
+            - core.forms.DocumentForm
+            - templates/form.html0
+    """
+    model = Document # take the Document Object
+    form_class = DocumentForm # and put it in a form
+    template_name = "form.html" # put the form in templates/form.html
+    success_url = reverse_lazy("result") # and if the file is successfully uploaded, send it to the result page

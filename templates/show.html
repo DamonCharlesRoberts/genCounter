@@ -61,3 +61,43 @@
       color: #000000;
       background-color: #03DAC6;
     }
+
+    @media all and (max-width:30em) {
+      a.button1{
+          display:block;
+          margin:04em auto;
+      }
+    }
+  </style>
+  <!--
+    Display a table of the Gendered Language dictionary, and provide some links to other parts of the app.
+  -->
+  <body>
+    <center>
+    <h1>Gendered language dictionary</h1>
+    <p>A score of 1 represents words considered most feminine and 7 represents words considered most masculine.
+    </p>
+    <a href = {% url 'home' %} class="button1">Go back home</a>
+    <a href = {% url 'about' %} class="button1" target="_blank">Documentation </a>
+    <a href = {% url 'upload_file' %} class="button1" target="_blank">Use genCounter</a>
+    </center>
+    <div class="container">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>Word</th>
+		        <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+	        {% for Word in word %}  
+          <tr>
+            <td>{{Word.Word}}</td>
+            <td>{{Word.Score}}</td>
+          </tr>
+	        {% endfor %} 
+	      </tbody>
+      </table>	
+    </div>
+  </body>
+</html>
