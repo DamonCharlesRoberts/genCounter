@@ -63,16 +63,6 @@ def ResultPageView(request):
     score = instance.Score(dict) # pass the dictionary to the Score function and calculate the score for the file
     return render(request=request, template_name="result.html", context={'name':name, 'count':count, 'score':score}) # render the result of the WordCount, FileName, and Score and store them as name, count, and score for template 
 
-def DictPageView(request):
-    Dict = Dictionary.objects.all()
-    return render(request=request, template_name="show.html", context ={'word':Dict})
-
-def ResultPageView(request):
-    instance = Document.objects.latest("file")
-    count = instance.WordCount()
-    name = instance.FileName()
-    return render(request=request, template_name="result.html", context={'name':name, 'count':count})
-
 class CreateDocView(CreateView):
     model = Document
     form_class = DocumentForm
